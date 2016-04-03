@@ -1,0 +1,21 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                                                                  
+"features": [
+{ "type": "Feature", "properties": { "osm_id": "-1304215854", "timestamp": null, "name": "Aljunied Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.88966, 1.35488 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215853", "timestamp": null, "name": "Bishan North Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.84553, 1.35864 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215852", "timestamp": null, "name": "Bukit Gombak Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.75274, 1.36399 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215847", "timestamp": null, "name": "Dover Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.78347, 1.30242 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215846", "timestamp": null, "name": "Hwi Yoh Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.87392, 1.37376 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215845", "timestamp": null, "name": "Lam Soon Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.74103, 1.38178 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215844", "timestamp": null, "name": "Marine Parade Community Club", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.9095, 1.3049 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215842", "timestamp": null, "name": "Nee Soon Central Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.83369, 1.42847 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215840", "timestamp": null, "name": "Punggol Park Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.8963, 1.37779 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215839", "timestamp": null, "name": "Rivervale Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.90201, 1.39336 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215836", "timestamp": null, "name": "Sengkang Community Club", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.89421, 1.39265 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215833", "timestamp": null, "name": "Woodgrove Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.78532, 1.43185 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-1304215831", "timestamp": null, "name": "Ci Yuan Community Centre", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.88235, 1.37454 ] } },
+{ "type": "Feature", "properties": { "osm_id": "-891695117", "timestamp": null, "name": "Games Garage", "type": "community_centre" }, "geometry": { "type": "Point", "coordinates": [ 103.89099, 1.33201 ] } }
+]
+}
