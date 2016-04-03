@@ -21,30 +21,25 @@ var layersDark = new ol.layer.Group({
     ]
 });
 
+var layerOSM = new ol.layer.Tile({
+    source: new ol.source.OSM()
+})
 
-/*    var map = new ol.Map({
-       target: 'map',
-       layers: [
-           new ol.layer.Tile({
-               source: new ol.source.OSM()
-           }),
-           darkLayer,
-           gjsonLibraries
-       ],
-       view: new ol.View({
-           center: ol.proj.fromLonLat([103.85, 1.29]),
-           //center:  ol.proj.transform([103.85, 1.29], 'EPSG:4326', 'EPSG:3857'),
+var layerDark = new ol.layer.Tile({
+    source: new ol.source.XYZ({
+        url: 'http://{1-4}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        attributions: [new ol.Attribution({
+            html: ['&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>']
+        })]
+    })
+})
 
-           zoom: 11,
-           maxZoom: 16,
-           minZoom: 10
-       })
-   });*/
 
 var map = new ol.Map({
     target: 'map',
     layers: [
-
+        layerOSM,
+        layerDark
     ],
     view: new ol.View({
         center: ol.proj.fromLonLat([103.85, 1.29]),
@@ -55,9 +50,12 @@ var map = new ol.Map({
 });
 
 function setMapType(newType) {
+    console.log("i am triggered");
     if (newType == 'OSM') {
-        map.setLayerGroup(layersOSM);
+        layerOSM.setVisible(true);
+        layerDark.setVisible(false);
     } else if (newType == 'Dark') {
-        map.setLayerGroup(layersDark);
+        layerOSM.setVisible(false);
+        layerDark.setVisible(true);
     }
 }
