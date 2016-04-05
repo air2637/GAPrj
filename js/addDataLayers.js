@@ -23,6 +23,11 @@ var atmDataLayer = new ol.layer.Vector({
     style: atmIconStyle
 });
 
+var atmOriginalSource = new ol.source.Vector({
+    url: 'data/atm.geojson',
+    format: new ol.format.GeoJSON()
+});
+
 var cafeDataLayer = new ol.layer.Vector({
     source: new ol.source.Vector({
         url: 'data/cafe.geojson',
@@ -80,8 +85,10 @@ $("#natural_data_layer").change(function() {
 
 $("#atm_data_layer").change(function() {
     if ($("#atm_data_layer").prop('checked') == true) {
-        console.log("hee");
-        map.addLayer(atmDataLayer);
+
+        var atmClusteredLayer = addClusteringStyleTo(atmOriginalSource, atmIconStyle);
+
+        map.addLayer(atmClusteredLayer);
     } else {
         console.log("llo");
         map.removeLayer(atmDataLayer);
