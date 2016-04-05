@@ -11,6 +11,7 @@
     </style>
     <script src="js/ol.js" type="text/javascript"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
+
     <title>OpenLayers 3 example</title>
 </head>
 
@@ -30,13 +31,15 @@
     <input type="checkbox" id="parking_data_layer" value="Parking"> Parking
     <input type="checkbox" id="taxi_data_layer" value="Taxi"> Taxi
     
-    <script src="js/addBaseMap.js"></script>
-    <script src="js/addDataLayers.js"></script>
+    
     <script type="text/javascript">
     $(document).ready(function() {
         setMapType('OSM');
     });
     </script>
+    <script type="text/javascript" src="js/addBaseMap.js"></script>
+    <script type="text/javascript" src="js/addDataLayers.js"></script>
+    <script type="text/javascript" src="js/handleDragDropDataLayer.js"></script>
 </body>
 
 </html>

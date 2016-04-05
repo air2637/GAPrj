@@ -36,11 +36,12 @@ var layerDark = new ol.layer.Tile({
 
 
 var map = new ol.Map({
-    target: 'map',
+    
     layers: [
         layerOSM,
         layerDark
     ],
+    target: 'map',
     view: new ol.View({
         center: ol.proj.fromLonLat([103.85, 1.29]),
         zoom: 11,
