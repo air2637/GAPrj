@@ -34,10 +34,10 @@ function add_buffer_to_lib(radius, unit) {
 
 $("#lib_buffer_layer").change(function() {
     if ($("#lib_buffer_layer").prop('checked') == true) {
-
         lib_buffer_layer = add_buffer_to_lib(radius, unit);
-
+        $( "#lib_buffer_form" ).slideDown();
     } else {
         map.removeLayer(lib_buffer_layer);
+        $( "#lib_buffer_form" ).hide();
     }
 });

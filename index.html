@@ -22,19 +22,42 @@
         <option value="OSM">OSM</option>
         <option value="Dark">Dark</option>
     </select>
+    <br>
+
+    <label>Public Space:</label> <br>
     <input type="checkbox" id="natural_data_layer" value="Natural"> Natural
+    <input type="checkbox" id="library_data_layer" value="Library"> Library
+    <input type="checkbox" id="communityCentre_data_layer" value="communityCentre"> Community Centre
+    <br>
+
+    <label>Facilities: </label> <br>
     <input type="checkbox" id="atm_data_layer" value="ATM"> ATM
     <input type="checkbox" id="cafe_data_layer" value="Cafe"> Cafe
-    <input type="checkbox" id="communityCentre_data_layer" value="communityCentre"> Community Centre
     <input type="checkbox" id="foodBeverage_data_layer" value="FB"> Food & Beverage
-    <input type="checkbox" id="library_data_layer" value="Library"> Library
     <input type="checkbox" id="parking_data_layer" value="Parking"> Parking
     <input type="checkbox" id="taxi_data_layer" value="Taxi"> Taxi
-    
+    <br>
+
+    <label>Analysis Tools:</label> <br>
     <input type="checkbox" id="lib_buffer_layer" value="library buffer"> library buffer
+    <form id="lib_buffer_form">
+        Library buffer radius:
+        <input type="text" name="lib_buffer_radius" value="35">
+        <br> Library buffer radius unit:
+        <select>
+            <option value="meters">meters</option>
+            <option value="kilometers">kilometers</option>
+            <option value="miles">miles</option>
+            <option value="degrees">degrees</option>
+        </select>
+        <br>
+    </form>
+
+    
     <script type="text/javascript">
     $(document).ready(function() {
         setMapType('OSM');
+        $( "#lib_buffer_form" ).hide();
     });
     </script>
     <script type="text/javascript" src="js/addClusteringStyle.js"></script>

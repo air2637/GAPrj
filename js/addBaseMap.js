@@ -53,7 +53,6 @@ var map = new ol.Map({
 });
 
 function setMapType(newType) {
-    console.log("i am triggered");
     if (newType == 'OSM') {
         layerOSM.setVisible(true);
         layerDark.setVisible(false);
