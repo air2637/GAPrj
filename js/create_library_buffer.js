@@ -62,7 +62,7 @@ $.each(features, function(key, value) {
 });
 console.log("after");
 
-//var buffered = turf.buffer(features, 35, unit);
+var buffered = turf.buffer(features, 35, unit);
 
 var formater = new ol.format.GeoJSON({
     defaultDataProjection: 'EPSG:4326',
