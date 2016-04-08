@@ -1,32 +1,411 @@
 {
-"type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-                                                                                                                                  
-"features": [
-{ "type": "Feature", "properties": { "osm_id": "1208261385", "timestamp": null, "name": "S.A.V.H. Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.84054, 1.33853 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1244322596", "timestamp": null, "name": "Hiitop Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.77459, 1.31122 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1314763926", "timestamp": null, "name": null, "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.93902, 1.31298 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1394607372", "timestamp": null, "name": "27", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.93249, 1.34497 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1553397915", "timestamp": null, "name": "Medical\/Science Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.78009, 1.29518 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1667531110", "timestamp": null, "name": null, "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.78424, 1.44327 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1721874810", "timestamp": null, "name": "Lien Ying Chow Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.77688, 1.33367 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1743938506", "timestamp": null, "name": "Bukit Batok Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.74226, 1.34339 ] } },
-{ "type": "Feature", "properties": { "osm_id": "1847853715", "timestamp": null, "name": "Woodlands Regional Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.78716, 1.43492 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-2047462642", "timestamp": null, "name": "Lee Wee Nam Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.68092, 1.34768 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304216719", "timestamp": null, "name": "library@chinatown", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.8449, 1.2849 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304216718", "timestamp": null, "name": "library@esplanade", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.85618, 1.28988 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215851", "timestamp": null, "name": "Bukit Panjang Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.76456, 1.3797 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215849", "timestamp": null, "name": "Cheng San Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.89397, 1.37264 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215848", "timestamp": null, "name": "Choa Chu Kang Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.7451, 1.38515 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215843", "timestamp": null, "name": "Marine Parade Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.90976, 1.30497 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215841", "timestamp": null, "name": "Pasir Ris Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.95003, 1.37247 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215837", "timestamp": null, "name": "Sembawang Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.81941, 1.4479 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215835", "timestamp": null, "name": "Sengkang Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.89497, 1.39252 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215834", "timestamp": null, "name": "Serangoon Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.87295, 1.35058 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215832", "timestamp": null, "name": "Yishun Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.83564, 1.4296 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-1304215830", "timestamp": null, "name": "Clementi Public Library", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.76463, 1.31481 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-987350626", "timestamp": null, "name": "library@Orchard", "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.83967, 1.30032 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-624473571", "timestamp": null, "name": null, "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.77238, 1.30724 ] } },
-{ "type": "Feature", "properties": { "osm_id": "-369986725", "timestamp": null, "name": null, "type": "library" }, "geometry": { "type": "Point", "coordinates": [ 103.77006, 1.30281 ] } }
-]
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1208261385",
+        "timestamp": null,
+        "name": "S.A.V.H. Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.84054,
+          1.33853
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1244322596",
+        "timestamp": null,
+        "name": "Hiitop Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.77459,
+          1.31122
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1314763926",
+        "timestamp": null,
+        "name": null,
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.93902,
+          1.31298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1394607372",
+        "timestamp": null,
+        "name": "27",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.93249,
+          1.34497
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1553397915",
+        "timestamp": null,
+        "name": "Medical/Science Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.78009,
+          1.29518
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1667531110",
+        "timestamp": null,
+        "name": null,
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.78424,
+          1.44327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1721874810",
+        "timestamp": null,
+        "name": "Lien Ying Chow Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.77688,
+          1.33367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1743938506",
+        "timestamp": null,
+        "name": "Bukit Batok Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.74226,
+          1.34339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "1847853715",
+        "timestamp": null,
+        "name": "Woodlands Regional Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.78716,
+          1.43492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-2047462642",
+        "timestamp": null,
+        "name": "Lee Wee Nam Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.68092,
+          1.34768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304216719",
+        "timestamp": null,
+        "name": "library@chinatown",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8449,
+          1.2849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304216718",
+        "timestamp": null,
+        "name": "library@esplanade",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.85618,
+          1.28988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215851",
+        "timestamp": null,
+        "name": "Bukit Panjang Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.76456,
+          1.3797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215849",
+        "timestamp": null,
+        "name": "Cheng San Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.89397,
+          1.37264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215848",
+        "timestamp": null,
+        "name": "Choa Chu Kang Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.7451,
+          1.38515
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215843",
+        "timestamp": null,
+        "name": "Marine Parade Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.90976,
+          1.30497
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215841",
+        "timestamp": null,
+        "name": "Pasir Ris Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.95003,
+          1.37247
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215837",
+        "timestamp": null,
+        "name": "Sembawang Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.81941,
+          1.4479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215835",
+        "timestamp": null,
+        "name": "Sengkang Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.89497,
+          1.39252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215834",
+        "timestamp": null,
+        "name": "Serangoon Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.87295,
+          1.35058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215832",
+        "timestamp": null,
+        "name": "Yishun Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.83564,
+          1.4296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-1304215830",
+        "timestamp": null,
+        "name": "Clementi Public Library",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.76463,
+          1.31481
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-987350626",
+        "timestamp": null,
+        "name": "library@Orchard",
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.83967,
+          1.30032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-624473571",
+        "timestamp": null,
+        "name": null,
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.77238,
+          1.30724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "osm_id": "-369986725",
+        "timestamp": null,
+        "name": null,
+        "type": "library"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.77006,
+          1.30281
+        ]
+      }
+    }
+  ]
 }
