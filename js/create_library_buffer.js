@@ -31,13 +31,29 @@ function add_buffer_to_lib(radius, unit) {
 
     });
 }
-
+// show menu if buffer selection box is checked
 $("#lib_buffer_layer").change(function() {
     if ($("#lib_buffer_layer").prop('checked') == true) {
         lib_buffer_layer = add_buffer_to_lib(radius, unit);
-        $( "#lib_buffer_form" ).slideDown();
+        $("#lib_buffer_form").slideDown();
     } else {
         map.removeLayer(lib_buffer_layer);
-        $( "#lib_buffer_form" ).hide();
+        $("#lib_buffer_form").hide();
     }
+});
+
+// update lib buffer radius
+$('#lib_buffer_radius').on('input propertychange paste', function() {
+    radius = $('#lib_buffer_radius').val();
+    if ($.isNumeric(radius) && radius > 0) {
+        map.removeLayer(lib_buffer_layer);
+        lib_buffer_layer = add_buffer_to_lib(radius, unit);
+    }
+
+});
+// update lib buffer unit
+$('#lib_buffer_unit').change(function() {
+    map.removeLayer(lib_buffer_layer);
+    unit = $('#lib_buffer_unit').val();
+    lib_buffer_layer = add_buffer_to_lib(radius, unit);
 });
