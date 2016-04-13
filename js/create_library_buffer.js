@@ -49,7 +49,6 @@ $('#lib_buffer_radius').on('input propertychange paste', function() {
         map.removeLayer(lib_buffer_layer);
         lib_buffer_layer = add_buffer_to_lib(radius, unit);
     }
-
 });
 // update lib buffer unit
 $('#lib_buffer_unit').change(function() {
