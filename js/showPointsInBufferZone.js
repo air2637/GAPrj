@@ -20,53 +20,19 @@ function showPointsInBufferZone(pointLayer, polygonLayer) {
     // console.log(polygons_obj);
     //console.log(JSON.stringify(polygons_obj));
 
-
-
-
+    //while reading cafe point data and do the count computation with polygon
     $.getJSON('data/cafe.geojson', function(data) {
         var point_obj = data;
-
-
+        //counted is the polygon object with pt_count attribute attached
         var counted = turf.count(polygons_obj, point_obj, 'pt_count');
-
+        console.log(JSON.stringify(counted));
         var resultFeatures = point_obj.features.concat(counted.features);
         var result = {
             "type": "FeatureCollection",
             "features": resultFeatures
         };
-        console.log(JSON.stringify(result));
+        // console.log(JSON.stringify(result));
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-    $.getJSON('data/cafe.geojson', function(data) {
-        var point_obj = data;
-
-
-        var counted = turf.count(polygon_obj, point_obj, 'pt_count');
-
-        var resultFeatures = point_obj.features.concat(counted.features);
-        var result = {
-            "type": "FeatureCollection",
-            "featusres": resultFeatures
-        };
-        console.log(JSON.stringify(result));
-    });*/
 
 }
 
