@@ -8,8 +8,41 @@ var testNum = 0;
 function add_buffer_to_lib(radius, unit) {
     $.getJSON("data/library.geojson", function(data) {
 
-        var buffer_object = turf.buffer(data, radius, unit);
-        //console.log(JSON.stringify(buffer_object));
+        //approach 1: create buffer in one go
+        /*
+                // console.log(JSON.stringify(data));
+                var buffer_object = turf.buffer(data, radius, unit);
+                // console.log(JSON.stringify(buffer_object));
+
+                var formater = new ol.format.GeoJSON({
+                    defaultDataProjection: 'EPSG:4326',
+                    projection: 'EPSG:4326'
+                });
+
+                var vectorSource = new ol.source.Vector({
+                    features: formater.readFeatures(buffer_object)
+                });
+
+
+                window.lib_buffer_layer = new ol.layer.Vector({
+                    source: vectorSource
+                });
+
+                map.addLayer(window.lib_buffer_layer);
+                return window.lib_buffer_layer;*/
+
+        //approach 2: create buffer for each lib one by one
+
+        var buffer_arr = []; //this will be 'features' in layer json
+        $.each(data.features, function(index, val) {
+            var buffer_ele = turf.buffer(val, radius, unit);
+            buffer_ele.features[0].properties = { 'name': val.properties.name + " _buffer" };
+            buffer_arr.push(buffer_ele.features[0]);
+        });
+        var buffer_layer_collection = {
+            'type': 'FeatureCollection',
+            'features': buffer_arr
+        };
 
         var formater = new ol.format.GeoJSON({
             defaultDataProjection: 'EPSG:4326',
@@ -17,7 +50,7 @@ function add_buffer_to_lib(radius, unit) {
         });
 
         var vectorSource = new ol.source.Vector({
-            features: formater.readFeatures(buffer_object)
+            features: formater.readFeatures(buffer_layer_collection)
         });
 
 
@@ -25,7 +58,6 @@ function add_buffer_to_lib(radius, unit) {
             source: vectorSource
         });
 
-        window.testNum = 1;
         map.addLayer(window.lib_buffer_layer);
         return window.lib_buffer_layer;
 
