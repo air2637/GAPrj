@@ -29,16 +29,44 @@ function getPointJsonFileDir(pointLayer) {
 
 }
 
-function displayBufferTable(table_col) {
-    /*$.each(table_col, function(index, value){
-        console.log(JSON.stringify(value));
-    });*/
-    console.log(JSON.stringify(table_col));
+function displayBufferTable(counted_obj) {
+
+    // console.log(JSON.stringify(counted_obj));
+
+    var row_num = counted_obj.features.length ;
+    var col_num = Object.keys(counted_obj.features[0].properties).length;
+    console.log("row: " + row_num + ", col: " + col_num);
+
+    var table = $('<table></table>').addClass('buffer_table table-bordered');
+    var row = $('<thead><tr></tr></thead>');
+    for (i = 0; i < col_num; i++) {
+        var cell = $('<td></td>').text(Object.keys(counted_obj.features[0].properties)[i]);
+        row.append(cell);
+    }
+    table.append(row);
+
+    for (i = 0; i < row_num; i++) {
+        var row=$('<tr></tr>');;
+        var target = counted_obj.features[i].properties;
+        console.log(JSON.stringify(target));
+        for (var k in target) {
+            if (target.hasOwnProperty(k)) {
+                //alert("Key is " + k + ", value is" + target[k]);
+                var cell = $('<td></td>').text(target[k]);
+                row.append(cell);
+            }
+        }
+
+        table.append(row);
+    }
+
+
+    $('#analysis_results').append(table);
+
 }
 
 $("#lib_buffer_button").click(function() {
-    var table_col = [],
-        _lib_buffer_for = [],
+    var _lib_buffer_for = [],
         _point_json_file_dir = [];
 
     if ($("#cafe_in_lib_buffer").prop('checked')) {
@@ -70,19 +98,19 @@ $("#lib_buffer_button").click(function() {
     //while reading cafe point data and do the count computation with polygon
     $.each(_point_json_file_dir, function(index, value) {
         $.getJSON(value, function(data) {
-            
+
             point_obj = data;
 
             //the following code to check what json file currently is loaded
-            $.each(_lib_buffer_for, function(sub_index, sub_value){
-                if(value.indexOf(sub_value)>-1){
+            $.each(_lib_buffer_for, function(sub_index, sub_value) {
+                if (value.indexOf(sub_value) > -1) {
                     _lib_buffer_for_sub = sub_value;
                     return false;
                 }
             })
-            
+
             //counted is the polygon object with pt_count attribute attached
-            counted = turf.count(polygon_obj, point_obj, 'num_of_'+ _lib_buffer_for_sub);
+            counted = turf.count(polygon_obj, point_obj, 'num_of_' + _lib_buffer_for_sub);
             //note that aft running turf.count, polygon_object will has 'pt_count' property
 
             /*var resultFeatures = point_obj.features.concat(counted.features);
@@ -92,12 +120,12 @@ $("#lib_buffer_button").click(function() {
             };*/
             //console.log(JSON.stringify(result));
             //table_col.push(counted);
-            tmp ++;
+            tmp++;
 
-            if(tmp == _lib_buffer_for.length){
+            if (tmp == _lib_buffer_for.length) {
                 displayBufferTable(counted);
             }
-            
+
         });
 
     });
