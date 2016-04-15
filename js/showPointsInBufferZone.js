@@ -1,36 +1,18 @@
-//showPointsInBufferZone.js
+//scalculateointsInBufferZone.js
 
-function showPointsInBufferZone(pointLayer, polygonLayer) {
+function getPointJsonFileDir(pointLayer) {
     //below example shows find atm points in a lib buffer zone
 
-    // convert lib_buffer multipolygon to a collection of polygons
-
-    //var polygonLayer = lib_buffer_layer;
-    var geojson = new ol.format.GeoJSON();
-    var polygon_obj = geojson.writeFeaturesObject(polygonLayer.getSource().getFeatures());
-    //console.log(JSON.stringify(polygon_obj));
-
-
-/* //the following steps are for converting multipolygon to a collection of polygons
-    var features=[];
-    polygon_obj.features[0].geometry.coordinates.forEach(function(coords){
-    	var geometry = {'type':'Polygon', 'coordinates':coords}; 
-    	var properties = {};
-    	var feature_element = {'type':'Feature','properties':properties,'geometry':geometry};
-    	features.push(feature_element);
-    });
-    var polygons_obj = {'type': 'FeatureCollection', 'features': features};*/
-
     var point_json_file_dir = '';
-    switch(pointLayer){
+    switch (pointLayer) {
         case 'Cafe':
             point_json_file_dir = 'data/cafe.geojson';
             break;
         case 'ATM':
-             point_json_file_dir = 'data/atm.geojson';
+            point_json_file_dir = 'data/atm.geojson';
             break;
-        case 'F&B':
-             point_json_file_dir = 'data/food_beverage.geojson';
+        case 'FB':
+            point_json_file_dir = 'data/food_beverage.geojson';
             break;
         case 'Parking':
             point_json_file_dir = 'data/parking.geojson';
@@ -42,24 +24,82 @@ function showPointsInBufferZone(pointLayer, polygonLayer) {
             //do nothing
     }
 
-    //while reading cafe point data and do the count computation with polygon
-    $.getJSON(point_json_file_dir, function(data) {
-        var point_obj = data;
-        //counted is the polygon object with pt_count attribute attached
-        var counted = turf.count(polygon_obj, point_obj, 'pt_count');
-        console.log(JSON.stringify(counted));
+    return point_json_file_dir;
 
-        var resultFeatures = point_obj.features.concat(counted.features);
-        var result = {
-            "type": "FeatureCollection",
-            "features": resultFeatures
-        };
-        //console.log(JSON.stringify(result));
-    });
 
 }
 
+function displayBufferTable(table_col) {
+    /*$.each(table_col, function(index, value){
+        console.log(JSON.stringify(value));
+    });*/
+    console.log(JSON.stringify(table_col));
+}
 
 $("#lib_buffer_button").click(function() {
-    showPointsInBufferZone("ATM", lib_buffer_layer);
+    var table_col = [],
+        _lib_buffer_for = [],
+        _point_json_file_dir = [];
+
+    if ($("#cafe_in_lib_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("Cafe"));
+        _lib_buffer_for.push("cafe");
+    }
+    if ($("#atm_in_lib_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("ATM"));
+        _lib_buffer_for.push("atm");
+    }
+    if ($("#foodBeverage_in_lib_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("FB"));
+        _lib_buffer_for.push("food_beverage");
+    }
+    if ($("#parking_in_lib_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("Parking"));
+        _lib_buffer_for.push("parking");
+    }
+    if ($("#taxi_in_lib_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("Taxi"));
+        _lib_buffer_for.push("taxi");
+    }
+
+    var geojson = new ol.format.GeoJSON();
+    var polygon_obj = geojson.writeFeaturesObject(lib_buffer_layer.getSource().getFeatures());
+    var tmp = 0;
+    var counted, point_obj;
+    var _lib_buffer_for_sub;
+    //while reading cafe point data and do the count computation with polygon
+    $.each(_point_json_file_dir, function(index, value) {
+        $.getJSON(value, function(data) {
+            
+            point_obj = data;
+
+            //the following code to check what json file currently is loaded
+            $.each(_lib_buffer_for, function(sub_index, sub_value){
+                if(value.indexOf(sub_value)>-1){
+                    _lib_buffer_for_sub = sub_value;
+                    return false;
+                }
+            })
+            
+            //counted is the polygon object with pt_count attribute attached
+            counted = turf.count(polygon_obj, point_obj, 'num_of_'+ _lib_buffer_for_sub);
+            //note that aft running turf.count, polygon_object will has 'pt_count' property
+
+            /*var resultFeatures = point_obj.features.concat(counted.features);
+            var result = {
+                "type": "FeatureCollection",
+                "features": resultFeatures
+            };*/
+            //console.log(JSON.stringify(result));
+            //table_col.push(counted);
+            tmp ++;
+
+            if(tmp == _lib_buffer_for.length){
+                displayBufferTable(counted);
+            }
+            
+        });
+
+    });
+
 });
