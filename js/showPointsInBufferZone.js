@@ -33,21 +33,27 @@ function displayBufferTable(counted_obj) {
 
     //console.log(JSON.stringify(counted_obj));
     $(".buffer_table").remove();
+    //var buffer_table = $('.buffer-table-template').clone(true, true);
+    //buffer_table.removeClass('buffer-table-template').addClass('buffer_table');
 
     var row_num = counted_obj.features.length;
     var col_num = Object.keys(counted_obj.features[0].properties).length;
     // console.log("row: " + row_num + ", col: " + col_num);
 
-    var table = $('<table></table>').addClass('buffer_table table-bordered');
+    var table = $('<table data-sortable></table>').addClass('buffer_table');
+    
+    //make the table sortable
+
     var header = $('<thead></thead>');
     var row = $('<tr></tr>');
     for (i = 0; i < col_num; i++) {
-        var cell = $('<td></td>').text(Object.keys(counted_obj.features[0].properties)[i]);
+        var cell = $('<th></th>').text(Object.keys(counted_obj.features[0].properties)[i]);
         row.append(cell);
     }
     header.append(row);
     table.append(header);
 
+    var body = $('<tbody></tbody>');
 
     // the following is to attach real data into the table
     for (j = 0; j < row_num; j++) {
@@ -79,10 +85,13 @@ function displayBufferTable(counted_obj) {
             row.tooltip();
         });*/
 
-        table.append(row);
+        body.append(row);
     }
 
+    table.append(body);
+    
     $('#analysis_results').append(table);
+    Sortable.init();
 
 }
 
