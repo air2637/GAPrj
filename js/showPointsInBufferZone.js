@@ -31,10 +31,10 @@ function getPointJsonFileDir(pointLayer) {
 
 function displayBufferTable(counted_obj) {
 
-    // console.log(JSON.stringify(counted_obj));
+    //console.log(JSON.stringify(counted_obj));
     $(".buffer_table").remove();
 
-    var row_num = counted_obj.features.length ;
+    var row_num = counted_obj.features.length;
     var col_num = Object.keys(counted_obj.features[0].properties).length;
     // console.log("row: " + row_num + ", col: " + col_num);
 
@@ -48,9 +48,12 @@ function displayBufferTable(counted_obj) {
     header.append(row);
     table.append(header);
 
-    for (i = 0; i < row_num; i++) {
-        var row=$('<tr></tr>');;
-        var target = counted_obj.features[i].properties;
+
+    // the following is to attach real data into the table
+    for (j = 0; j < row_num; j++) {
+        var row = $('<tr></tr>');
+        row.data("id", j);
+        var target = counted_obj.features[j].properties;
         // console.log(JSON.stringify(target));
         for (var k in target) {
             if (target.hasOwnProperty(k)) {
@@ -59,12 +62,41 @@ function displayBufferTable(counted_obj) {
                 row.append(cell);
             }
         }
-
+        row.on("click", function() {
+            var _j = ($(this).data('id'));
+            var coordinate = counted_obj.features[_j].geometry.coordinates;
+            //console.log(JSON.stringify(coordinate));
+            moveToHere(coordinate[0][0]);
+        });
         table.append(row);
     }
 
     $('#analysis_results').append(table);
 
+}
+
+function moveToHere(coordinate) {
+    console.log(JSON.stringify(coordinate));
+    var view = window.map.getView();
+    var center = ol.proj.fromLonLat(coordinate, 'EPSG:4326');
+    //animation
+    var duration = 2000;
+    var start = +new Date();
+    var pan = ol.animation.pan({
+        duration: duration,
+        source: /** @type {ol.Coordinate} */ (view.getCenter()),
+        start: start
+    });
+    var bounce = ol.animation.bounce({
+        duration: duration,
+        resolution: 4 * view.getResolution(),
+        start: start
+    });
+    map.beforeRender(pan, bounce);
+    //end of animation
+    view.setCenter(center);
+    view.setZoom(16);
+    window.map.setView(view);
 }
 
 $("#lib_buffer_button").click(function() {
