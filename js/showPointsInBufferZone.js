@@ -32,23 +32,26 @@ function getPointJsonFileDir(pointLayer) {
 function displayBufferTable(counted_obj) {
 
     // console.log(JSON.stringify(counted_obj));
+    $(".buffer_table").remove();
 
     var row_num = counted_obj.features.length ;
     var col_num = Object.keys(counted_obj.features[0].properties).length;
-    console.log("row: " + row_num + ", col: " + col_num);
+    // console.log("row: " + row_num + ", col: " + col_num);
 
     var table = $('<table></table>').addClass('buffer_table table-bordered');
-    var row = $('<thead><tr></tr></thead>');
+    var header = $('<thead></thead>');
+    var row = $('<tr></tr>');
     for (i = 0; i < col_num; i++) {
         var cell = $('<td></td>').text(Object.keys(counted_obj.features[0].properties)[i]);
         row.append(cell);
     }
-    table.append(row);
+    header.append(row);
+    table.append(header);
 
     for (i = 0; i < row_num; i++) {
         var row=$('<tr></tr>');;
         var target = counted_obj.features[i].properties;
-        console.log(JSON.stringify(target));
+        // console.log(JSON.stringify(target));
         for (var k in target) {
             if (target.hasOwnProperty(k)) {
                 //alert("Key is " + k + ", value is" + target[k]);
@@ -59,7 +62,6 @@ function displayBufferTable(counted_obj) {
 
         table.append(row);
     }
-
 
     $('#analysis_results').append(table);
 
