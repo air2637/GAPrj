@@ -62,12 +62,23 @@ function displayBufferTable(counted_obj) {
                 row.append(cell);
             }
         }
+
+        row.attr("title", "click to locate");
+        row.attr("data-toggle", "tooltip");
+        row.tooltip();
+
         row.on("click", function() {
             var _j = ($(this).data('id'));
             var coordinate = counted_obj.features[_j].geometry.coordinates;
             //console.log(JSON.stringify(coordinate));
             moveToHere(coordinate[0][0]);
         });
+       /* row.hover(function() {
+            // $(this).append($("<span> click to locate the buffer zone</span>"));
+            console.log("hovered");
+            row.tooltip();
+        });*/
+
         table.append(row);
     }
 
