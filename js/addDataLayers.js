@@ -1,11 +1,20 @@
 var atmClusteredLayer, cafeClusteredLayer, foodBeverageClusteredLayer,
- parkingClusteredLayer, taxiClusteredLayer;
+    parkingClusteredLayer, taxiClusteredLayer;
 
 // initiate vector layer from a GeoJson file url
 var naturalDataLayer = new ol.layer.Vector({
     source: new ol.source.Vector({
-        url: 'data/natural.geojson',
+        url: 'data/natural2.geojson',
         format: new ol.format.GeoJSON()
+    }),
+    style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'green',
+            width: 1
+        }),
+        fill: new ol.style.Fill({
+            color: 'rgba(0, 0, 255, 0.1)'
+        })
     })
 });
 // -------------------------------------------------
@@ -91,7 +100,7 @@ var communityCentreDataLayer = new ol.layer.Vector({
         url: 'data/communityCenter.geojson',
         format: new ol.format.GeoJSON()
     }),
-     style: communityCenterIconStyle
+    style: communityCenterIconStyle
 });
 
 var libraryIconStyle = new ol.style.Style({

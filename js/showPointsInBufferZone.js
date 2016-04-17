@@ -252,3 +252,70 @@ $("#cc_buffer_button").click(function() {
     });
 
 });
+
+$("#nature_buffer_button").click(function() {
+    var _nature_buffer_for = [],
+        _point_json_file_dir = [];
+
+    if ($("#cafe_in_nature_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("Cafe"));
+        _nature_buffer_for.push("cafe");
+    }
+    if ($("#atm_in_nature_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("ATM"));
+        _nature_buffer_for.push("atm");
+    }
+    if ($("#foodBeverage_in_nature_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("FB"));
+        _nature_buffer_for.push("food_beverage");
+    }
+    if ($("#parking_in_nature_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("Parking"));
+        _nature_buffer_for.push("parking");
+    }
+    if ($("#taxi_in_nature_buffer").prop('checked')) {
+        _point_json_file_dir.push(getPointJsonFileDir("Taxi"));
+        _nature_buffer_for.push("taxi");
+    }
+
+    var geojson = new ol.format.GeoJSON();
+    var polygon_obj = geojson.writeFeaturesObject(nature_buffer_layer.getSource().getFeatures());
+    var tmp = 0;
+    var counted, point_obj;
+    var _nature_buffer_for_sub;
+    //while reading cafe point data and do the count computation with polygon
+    $.each(_point_json_file_dir, function(index, value) {
+        $.getJSON(value, function(data) {
+
+            point_obj = data;
+
+            //the following code to check what json file currently is loaded
+            $.each(_nature_buffer_for, function(sub_index, sub_value) {
+                if (value.indexOf(sub_value) > -1) {
+                    _nature_buffer_for_sub = sub_value;
+                    return false;
+                }
+            })
+
+            //counted is the polygon object with pt_count attribute attached
+            counted = turf.count(polygon_obj, point_obj, 'num_of_' + _nature_buffer_for_sub);
+            //note that aft running turf.count, polygon_object will has 'pt_count' property
+
+            /*var resultFeatures = point_obj.features.concat(counted.features);
+            var result = {
+                "type": "FeatureCollection",
+                "features": resultFeatures
+            };*/
+            //console.log(JSON.stringify(result));
+            //table_col.push(counted);
+            tmp++;
+
+            if (tmp == _nature_buffer_for.length) {
+                displayBufferTable(counted);
+            }
+
+        });
+
+    });
+
+});
