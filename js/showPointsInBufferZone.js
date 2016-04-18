@@ -60,14 +60,17 @@ function displayBufferTable(buffer_layer, counted_obj) {
     // console.log(JSON.stringify(counted_obj));
     var _last_index = 0,
         _last_index_bol = false;
-    $(".buffer_table").remove();
+    $(".dataTables_wrapper").remove();
 
     var row_num = counted_obj.features.length;
     var col_num = Object.keys(counted_obj.features[0].properties).length;
     // console.log("row: " + row_num + ", col: " + col_num);
 
-    var table = $('<table data-sortable></table>').addClass('buffer_table sortable-theme-bootstrap');
+    // var table = $('<table data-sortable></table>').addClass('buffer_table sortable-theme-bootstrap');
     //make the table sortable
+
+    var table = $('<table></table>').addClass('buffer_table sortable-theme-bootstrap');
+    
 
     var header = $('<thead></thead>');
     var row = $('<tr></tr>');
@@ -124,7 +127,8 @@ function displayBufferTable(buffer_layer, counted_obj) {
     table.append(body);
     
     $('#analysis_results').append(table);
-    Sortable.init();
+    //Sortable.init();
+    $('.buffer_table').DataTable();
 
 }
 
