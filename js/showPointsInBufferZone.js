@@ -29,19 +29,44 @@ function getPointJsonFileDir(pointLayer) {
 
 }
 
-function displayBufferTable(counted_obj) {
+function highlightThisObject(buffer_layer, index, last_index, last_index_bol ){
+    
+    //console.log(buffer_layer);
+    var _feature = buffer_layer.getSource().getFeatures()[index];
+    var _style = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'green',
+            width: 1
+        }),
+        fill: new ol.style.Fill({
+            color: 'rgba(0, 0, 255, 0.1)'
+        })
+    });
 
-    //console.log(JSON.stringify(counted_obj));
+    if(last_index_bol!=false){
+        var _default_style = _feature.getStyle();
+        var _last_feature = buffer_layer.getSource().getFeatures()[last_index];
+        _last_feature.setStyle(_default_style);
+    }
+
+    _feature.setStyle(_style);
+    return index;
+
+}
+
+
+function displayBufferTable(buffer_layer, counted_obj) {
+
+    // console.log(JSON.stringify(counted_obj));
+    var _last_index = 0,
+        _last_index_bol = false;
     $(".buffer_table").remove();
-    //var buffer_table = $('.buffer-table-template').clone(true, true);
-    //buffer_table.removeClass('buffer-table-template').addClass('buffer_table');
 
     var row_num = counted_obj.features.length;
     var col_num = Object.keys(counted_obj.features[0].properties).length;
     // console.log("row: " + row_num + ", col: " + col_num);
 
     var table = $('<table data-sortable></table>').addClass('buffer_table sortable-theme-bootstrap');
-    
     //make the table sortable
 
     var header = $('<thead></thead>');
@@ -59,6 +84,7 @@ function displayBufferTable(counted_obj) {
     for (j = 0; j < row_num; j++) {
         var row = $('<tr></tr>');
         row.data("id", j);
+
         var target = counted_obj.features[j].properties;
         // console.log(JSON.stringify(target));
         for (var k in target) {
@@ -69,21 +95,28 @@ function displayBufferTable(counted_obj) {
             }
         }
 
-        row.attr("title", "click to locate");
+        row.attr("title", "Click to locate the buffer zone");
         row.attr("data-toggle", "tooltip");
         row.tooltip();
+        //adding tooltip feature
 
         row.on("click", function() {
             var _j = ($(this).data('id'));
             var coordinate = counted_obj.features[_j].geometry.coordinates;
             //console.log(JSON.stringify(coordinate));
-            moveToHere(coordinate[0][0]);
+            var _this_buffer_zone_feature = counted_obj.features[_j];
+
+            /*if(_last_index_bol){
+                 highlightThisObject(buffer_layer, _j, _last_index, _last_index_bol);
+            }else{
+                _last_index = highlightThisObject(buffer_layer, _j, _last_index, _last_index_bol);
+                _last_index_bol = true;
+            }*/
+            _last_index = highlightThisObject(buffer_layer, _j, _last_index, _last_index_bol);
+            _last_index_bol = true;
+           
+            moveToHere(coordinate[0][0]); //by right, should find the centroid of the polygon
         });
-       /* row.hover(function() {
-            // $(this).append($("<span> click to locate the buffer zone</span>"));
-            console.log("hovered");
-            row.tooltip();
-        });*/
 
         body.append(row);
     }
@@ -96,7 +129,7 @@ function displayBufferTable(counted_obj) {
 }
 
 function moveToHere(coordinate) {
-    console.log(JSON.stringify(coordinate));
+    //console.log(JSON.stringify(coordinate));
     var view = window.map.getView();
     var center = ol.proj.fromLonLat(coordinate, 'EPSG:4326');
     //animation
@@ -177,7 +210,7 @@ $("#lib_buffer_button").click(function() {
             tmp++;
 
             if (tmp == _lib_buffer_for.length) {
-                displayBufferTable(counted);
+                displayBufferTable(lib_buffer_layer, counted);
             }
 
         });
@@ -244,7 +277,7 @@ $("#cc_buffer_button").click(function() {
             tmp++;
 
             if (tmp == _cc_buffer_for.length) {
-                displayBufferTable(counted);
+                displayBufferTable(cc_buffer_layer, counted);
             }
 
         });
@@ -311,7 +344,7 @@ $("#nature_buffer_button").click(function() {
             tmp++;
 
             if (tmp == _nature_buffer_for.length) {
-                displayBufferTable(counted);
+                displayBufferTable(nature_buffer_layer, counted);
             }
 
         });
