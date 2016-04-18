@@ -35,11 +35,11 @@ function highlightThisObject(buffer_layer, index, last_index, last_index_bol ){
     var _feature = buffer_layer.getSource().getFeatures()[index];
     var _style = new ol.style.Style({
         stroke: new ol.style.Stroke({
-            color: 'green',
+            color: 'yellow',
             width: 1
         }),
         fill: new ol.style.Fill({
-            color: 'rgba(0, 0, 255, 0.1)'
+            color: 'rgba(249, 241, 68, 0.55)'
         })
     });
 
