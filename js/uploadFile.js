@@ -16,7 +16,7 @@ function onReaderLoad(event) {
 }
 
 function processObj(obj) {
-    // console.log(JSON.stringify(obj));
+     console.log(JSON.stringify(obj));
     var formater = new ol.format.GeoJSON({
         defaultDataProjection: 'EPSG:4326',
         projection: 'EPSG:4326'

@@ -52,6 +52,7 @@ var map = new ol.Map({
     })
 });
 
+
 function setMapType(newType) {
     if (newType == 'OSM') {
         layerOSM.setVisible(true);

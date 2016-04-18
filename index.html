@@ -4,9 +4,13 @@
 <head>
     <link rel="stylesheet" href="css/ol.css" type="text/css">
     <style>
-    .map {
+    /* .map {
         height: 400px;
         width: 100%;
+    }*/
+    
+    html body {
+        background-color: #f2f2f2;
     }
     </style>
     <script src="js/ol.js" type="text/javascript"></script>
@@ -23,49 +27,54 @@
     <!-- sortable table library -->
     <link rel="stylesheet" href="css/sortable-theme-bootstrap.css" />
     <script src="js/sortable.min.js"></script>
-
     <!-- another sortable table library -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-
     <title>OpenLayers 3 example</title>
 </head>
 
-<body>
-    <div class="container">
+<body bgcolor="#E6E6FA">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <div id="map" class="map row"></div>
+                <div id="map" class="map row">
+                </div>
                 <div class="row" id="base_map_selection">
                     <select onchange="setMapType(value)">
                         <option value="OSM">OSM</option>
                         <option value="Dark">Dark</option>
                     </select>
-                    <br>
                 </div>
-                <div class="row" id="public_space_selection">
+                <div class="row form-group" id="public_space_selection" style="border-style: groove; background-color: #FEFAFF">
                     <label>Public Space:</label>
-                    <div class="pub_check_items">
-                    <label class="checkbox-inline"><input type="checkbox" id="natural_data_layer" value="Natural"> Natural</label>
-                    <label class="checkbox-inline"><input type="checkbox" id="library_data_layer" value="Library"> Library</label>
-                    <label class="checkbox-inline"><input type="checkbox" id="communityCentre_data_layer" value="communityCentre">Community Centre</label>
-                    </div>
                     <input id="pub_file" type="file" />
-                </div>
-                <div class="row" id="facilities_selection">
-                    <label>Facilities: </label>
-                    <div class="faci_check_items">
-                     <label class="checkbox-inline"><input type="checkbox" id="atm_data_layer" value="ATM"> ATM</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="cafe_data_layer" value="Cafe"> Cafe</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="foodBeverage_data_layer" value="FB"> Food & Beverage</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="parking_data_layer" value="Parking"> Parking</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="taxi_data_layer" value="Taxi"> Taxi</label>
+                    <div class="pub_check_items">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="natural_data_layer" value="Natural"> Natural</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="library_data_layer" value="Library"> Library</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="communityCentre_data_layer" value="communityCentre">Community Centre</label>
                     </div>
-                    <input id="faci_file" type="file" />
                 </div>
-                <div class="row" id="analysis_tools">
+                <div class="row form-group" id="facilities_selection" style="border-style: groove; background-color: #FEFAFF">
+                    <label>Facilities: </label>
+                    <input id="faci_file" type="file" />
+                    <div class="faci_check_items">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="atm_data_layer" value="ATM"> ATM</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="cafe_data_layer" value="Cafe"> Cafe</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="foodBeverage_data_layer" value="FB"> Food & Beverage</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="parking_data_layer" value="Parking"> Parking</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="taxi_data_layer" value="Taxi"> Taxi</label>
+                    </div>
+                </div>
+                <div class="row form-group" id="analysis_tools" style="border-style: groove; background-color: #FEFAFF">
                     <label>Analysis Tools:</label>
-                    <br>
                     <input type="checkbox" id="nature_buffer_layer" value="Naure buffer"> Nature Park
                     <input type="checkbox" id="cc_buffer_layer" value="Community Centre buffer"> Community Centre
                     <input type="checkbox" id="lib_buffer_layer" value="library buffer"> library buffer
@@ -125,7 +134,6 @@
             </div>
             <div class="col-md-6">
                 <div id="analysis_results">
-                    <h2>hello, here shows analysis results</h2>
                 </div>
             </div>
         </div>

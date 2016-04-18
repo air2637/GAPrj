@@ -204,12 +204,12 @@ $("#lib_buffer_button").click(function() {
             counted = turf.count(polygon_obj, point_obj, 'num_of_' + _lib_buffer_for_sub);
             //note that aft running turf.count, polygon_object will has 'pt_count' property
 
-            /*var resultFeatures = point_obj.features.concat(counted.features);
+            var resultFeatures = point_obj.features.concat(counted.features);
             var result = {
                 "type": "FeatureCollection",
                 "features": resultFeatures
-            };*/
-            //console.log(JSON.stringify(result));
+            };
+            console.log(JSON.stringify(result));
             //table_col.push(counted);
             tmp++;
 
