@@ -23,11 +23,9 @@
     <!-- sortable table library -->
     <link rel="stylesheet" href="css/sortable-theme-bootstrap.css" />
     <script src="js/sortable.min.js"></script>
-
     <!-- another sortable table library -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-
     <title>OpenLayers 3 example</title>
 </head>
 
@@ -46,30 +44,50 @@
                 <div class="row" id="public_space_selection">
                     <label>Public Space:</label>
                     <div class="pub_check_items">
-                    <label class="checkbox-inline"><input type="checkbox" id="natural_data_layer" value="Natural"> Natural</label>
-                    <label class="checkbox-inline"><input type="checkbox" id="library_data_layer" value="Library"> Library</label>
-                    <label class="checkbox-inline"><input type="checkbox" id="communityCentre_data_layer" value="communityCentre">Community Centre</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="natural_data_layer" value="Natural"> Natural</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="library_data_layer" value="Library"> Library</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="communityCentre_data_layer" value="communityCentre">Community Centre</label>
                     </div>
                     <input id="pub_file" type="file" />
                 </div>
                 <div class="row" id="facilities_selection">
                     <label>Facilities: </label>
                     <div class="faci_check_items">
-                     <label class="checkbox-inline"><input type="checkbox" id="atm_data_layer" value="ATM"> ATM</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="cafe_data_layer" value="Cafe"> Cafe</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="foodBeverage_data_layer" value="FB"> Food & Beverage</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="parking_data_layer" value="Parking"> Parking</label>
-                     <label class="checkbox-inline"><input type="checkbox" id="taxi_data_layer" value="Taxi"> Taxi</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="atm_data_layer" value="ATM"> ATM</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="cafe_data_layer" value="Cafe"> Cafe</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="foodBeverage_data_layer" value="FB"> Food & Beverage</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="parking_data_layer" value="Parking"> Parking</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="taxi_data_layer" value="Taxi"> Taxi</label>
                     </div>
                     <input id="faci_file" type="file" />
                 </div>
                 <div class="row" id="analysis_tools">
                     <label>Analysis Tools:</label>
                     <br>
-                    <input type="checkbox" id="nature_buffer_layer" value="Naure buffer"> Nature Park
-                    <input type="checkbox" id="cc_buffer_layer" value="Community Centre buffer"> Community Centre
-                    <input type="checkbox" id="lib_buffer_layer" value="library buffer"> library buffer
-                    <form id="nature_buffer_form">
+                    <!-- <input type="checkbox" id="nature_buffer_layer" value="Naure buffer"> Nature Park
+<input type="checkbox" id="cc_buffer_layer" value="Community Centre buffer"> Community Centre
+<input type="checkbox" id="lib_buffer_layer" value="library buffer"> library
+ -->
+                    <select id="buffer_layer_selection">
+                        <option value="" selected disabled>Please select an option...</option>
+                        <option value="cc_buffer_layer">Community Centre</option>
+                        <option value="nature_buffer_layer">Nature Park</option>
+                        <option value="lib_buffer_layer">Library</option>
+                    </select>
+
+                    <div id="buffer_layer_div">
+
+                    </div>
+
+                   <!--  <form class="template_buffer_form" id="nature_buffer_form" style=" display: none">
                         Nature Park buffer radius:
                         <input type="text" id="nature_buffer_radius" value="35">
                         <br> Nature Park buffer radius unit:
@@ -86,8 +104,8 @@
                         <input type="checkbox" id="parking_in_nature_buffer" value="Parking"> Parking
                         <input type="checkbox" id="taxi_in_nature_buffer" value="Taxi"> Taxi
                         <button type="button" id="nature_buffer_button">Points in Buffer</button>
-                    </form>
-                    <form id="cc_buffer_form">
+                    </form> -->
+             <!--        <form id="cc_buffer_form">
                         Community Centre buffer radius:
                         <input type="text" id="cc_buffer_radius" value="35">
                         <br> Community Centre buffer radius unit:
@@ -103,8 +121,8 @@
                         <input type="checkbox" id="parking_in_cc_buffer" value="Parking"> Parking
                         <input type="checkbox" id="taxi_in_cc_buffer" value="Taxi"> Taxi
                         <button type="button" id="cc_buffer_button">Points in Buffer</button>
-                    </form>
-                    <form id="lib_buffer_form">
+                    </form> -->
+                <!--     <form id="lib_buffer_form">
                         Library buffer radius:
                         <input type="text" id="lib_buffer_radius" value="35">
                         <br> Library buffer radius unit:
@@ -120,7 +138,7 @@
                         <input type="checkbox" id="parking_in_lib_buffer" value="Parking"> Parking
                         <input type="checkbox" id="taxi_in_lib_buffer" value="Taxi"> Taxi
                         <button type="button" id="lib_buffer_button">Points in Buffer</button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
             <div class="col-md-6">
@@ -147,6 +165,7 @@
     <script type="text/javascript" src="js/create_nature_buffer.js"></script>
     <script type="text/javascript" src="js/showPointsInBufferZone.js"></script>
     <script type="text/javascript" src="js/uploadFile.js"></script>
+    <script type="text/javascript" src="js/contrl_buffer_analysis_tool.js"></script>
 </body>
 
 </html>

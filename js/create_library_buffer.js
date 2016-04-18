@@ -57,14 +57,14 @@ function add_buffer_to_lib(radius, unit) {
         window.lib_buffer_layer = new ol.layer.Vector({
             source: vectorSource
         });
-
+        buffer_layers['lib_buffer_layer'] = window.lib_buffer_layer; 
         map.addLayer(window.lib_buffer_layer);
         return window.lib_buffer_layer;
 
     });
 }
 // show menu if buffer selection box is checked
-$("#lib_buffer_layer").change(function() {
+/*$("#lib_buffer_layer").change(function() {
     if ($("#lib_buffer_layer").prop('checked') == true) {
         lib_buffer_layer = add_buffer_to_lib(radius, unit);
         $("#lib_buffer_form").slideDown();
@@ -72,7 +72,7 @@ $("#lib_buffer_layer").change(function() {
         map.removeLayer(lib_buffer_layer);
         $("#lib_buffer_form").hide();
     }
-});
+});*/
 
 // update lib buffer radius
 $('#lib_buffer_radius').on('input propertychange paste', function() {

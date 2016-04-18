@@ -58,13 +58,14 @@ function add_buffer_to_cc(radius, unit) {
             source: vectorSource
         });
 
+        buffer_layers['cc_buffer_layer'] = window.cc_buffer_layer; 
         map.addLayer(window.cc_buffer_layer);
         return window.cc_buffer_layer;
 
     });
 }
 // show menu if buffer selection box is checked
-$("#cc_buffer_layer").change(function() {
+/*$("#cc_buffer_layer").change(function() {
     if ($("#cc_buffer_layer").prop('checked') == true) {
         cc_buffer_layer = add_buffer_to_cc(radius, unit);
         $("#cc_buffer_form").slideDown();
@@ -72,7 +73,7 @@ $("#cc_buffer_layer").change(function() {
         map.removeLayer(cc_buffer_layer);
         $("#cc_buffer_form").hide();
     }
-});
+});*/
 
 // update cc buffer radius
 $('#cc_buffer_radius').on('input propertychange paste', function() {

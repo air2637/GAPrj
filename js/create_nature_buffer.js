@@ -57,7 +57,8 @@ function add_buffer_to_nature(radius, unit) {
         window.nature_buffer_layer = new ol.layer.Vector({
             source: vectorSource
         });
-
+        
+        buffer_layers['nature_buffer_layer'] = window.nature_buffer_layer; 
         map.addLayer(window.nature_buffer_layer);
         return window.nature_buffer_layer;
 
@@ -66,7 +67,7 @@ function add_buffer_to_nature(radius, unit) {
 
 
 // show menu if buffer selection box is checked
-$("#nature_buffer_layer").change(function() {
+/*$("#nature_buffer_layer").change(function() {
     if ($("#nature_buffer_layer").prop('checked') == true) {
         $("#nature_buffer_form").slideDown();
         nature_buffer_layer = add_buffer_to_nature(radius, unit);
@@ -76,7 +77,7 @@ $("#nature_buffer_layer").change(function() {
         map.removeLayer(nature_buffer_layer);
         
     }
-});
+});*/
 
 // update nature buffer radius
 $('#nature_buffer_radius').on('input propertychange paste', function() {
