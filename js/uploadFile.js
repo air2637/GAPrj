@@ -2,7 +2,8 @@
 var user_added_layers = {};
 var current_layer_name;
 var markers = ['m1.svg', 'm2.svg', 'm3.svg', 'm4.svg', 'm5.svg', 'm6.svg', 'm7.svg', 'm8.svg', 'm9.svg',
- 'm10.svg', 'm11.svg', 'm12.svg'];
+    'm10.svg', 'm11.svg', 'm12.svg'
+];
 
 function handleFileSelect(evt) {
     var reader = new FileReader();
@@ -27,22 +28,32 @@ function processObj(obj) {
     });
 
     var source_file = "";
-    if(markers.length>0){
-		source_file = markers[Math.floor(Math.random() * 12)+1];
+    var _data_layer;
+
+    if (markers.length > 0 && obj.features[0].geometry.type == "Point") {
+        source_file = markers[Math.floor(Math.random() * 12) + 1]; // randome a num
+
+        var layerStyle = new ol.style.Style({
+            image: new ol.style.Icon(({
+                opacity: 0.75,
+                scale: 0.05,
+                src: 'data/' + source_file
+            }))
+        });
+
+
+         _data_layer = new ol.layer.Vector({
+            source: vectorSource,
+            style: layerStyle
+        });
+    }else{
+    	 _data_layer = new ol.layer.Vector({
+            source: vectorSource
+        });
     }
-    var layerStyle = new ol.style.Style({
-        image: new ol.style.Icon(({
-            opacity: 0.75,
-            scale: 0.05,
-            src: 'data/' +source_file 
-        }))
-    });
 
 
-    var _data_layer = new ol.layer.Vector({
-        source: vectorSource,
-        style: layerStyle
-    });
+
 
     user_added_layers["" + window.current_layer_name] = _data_layer;
 }
