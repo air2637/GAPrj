@@ -2,8 +2,7 @@
 var user_added_layers = {};
 var current_layer_name;
 var markers = ['m1.svg', 'm2.svg', 'm3.svg', 'm4.svg', 'm5.svg', 'm6.svg', 'm7.svg', 'm8.svg', 'm9.svg',
-    'm10.svg', 'm11.svg', 'm12.svg'
-];
+    'm10.svg', 'm11.svg', 'm12.svg'];
 
 function handleFileSelect(evt) {
     var reader = new FileReader();
@@ -53,8 +52,6 @@ function processObj(obj) {
     }
 
 
-
-
     user_added_layers["" + window.current_layer_name] = _data_layer;
 }
 
@@ -70,20 +67,45 @@ function uploadFile(evt) {
 }
 
 
-// document.getElementById('file').addEventListener('change', uploadFile);
 $('#pub_file').on('change', function() {
-    window.current_layer_name = $('input[type=file]').val().split('\\').pop().split('.')[0];
+    window.current_layer_name = $('#pub_file').val().split('\\').pop().split('.')[0];
     // console.log(window.current_layer_name);
 
     //add new item to html page
     var _parent_div = $(this).parent();
-    _parent_div.children('.pub_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_data_layer" value="communityCentre"> ' + window.current_layer_name + '</label>');
+    _parent_div.children('.pub_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_pub_data_layer"> ' + window.current_layer_name + '</label>');
 
     // upload layer content and instantiate the layer
     uploadFile();
 
     // attach a event listener 
-    var _selector = "#" + window.current_layer_name + "_user_data_layer";
+    var _selector = "#" + window.current_layer_name + "_user_pub_data_layer";
+
+    $(_selector).change(function() {
+        if ($(_selector).prop('checked') == true) {
+
+            // console.log($(this).prop('id'));
+            map.addLayer(user_added_layers[$(this).prop('id').split('_')[0]]);
+
+        } else {
+            map.removeLayer(user_added_layers[$(this).prop('id').split('_')[0]]);
+        }
+    });
+});
+
+$('#faci_file').on('change', function() {
+    window.current_layer_name = $('#faci_file').val().split('\\').pop().split('.')[0];
+    console.log(window.current_layer_name);
+
+    //add new item to html page
+    var _parent_div = $(this).parent();
+    _parent_div.children('.faci_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_faci_data_layer"> ' + window.current_layer_name + '</label>');
+
+    // upload layer content and instantiate the layer
+    uploadFile();
+
+    // attach a event listener 
+    var _selector = "#" + window.current_layer_name + "_user_faci_data_layer";
 
     $(_selector).change(function() {
         if ($(_selector).prop('checked') == true) {
