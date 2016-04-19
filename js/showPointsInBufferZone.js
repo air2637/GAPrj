@@ -428,7 +428,7 @@ function createUserDataBufferTable(another_selector) {
             tmp++;
 
             if (tmp == window._cc_buffer_for.length) {
-                displayBufferTable(window.user_added_data_layer, counted);
+                displayBufferTable(window.user_buffer_layer, counted);
             }
 
         });
