@@ -30,10 +30,8 @@
     <!-- another sortable table library -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-    <title>OpenLayers 3 example</title>
+    <title>SG Public Spaces Analysis Gadget</title>
 </head>
 
 <body bgcolor="#E6E6FA">
@@ -78,9 +76,32 @@
                 </div>
                 <div class="row form-group" id="analysis_tools" style="border-style: groove; background-color: #FEFAFF">
                     <label>Analysis Tools:</label>
-                    <input type="checkbox" id="nature_buffer_layer" value="Naure buffer"> Nature Park
-                    <input type="checkbox" id="cc_buffer_layer" value="Community Centre buffer"> Community Centre
-                    <input type="checkbox" id="lib_buffer_layer" value="library buffer"> library buffer
+                    <div class="buffer_check_items">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="nature_buffer_layer" value="Naure buffer"> Nature Park</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="cc_buffer_layer" value="Community Centre buffer"> Community Centre</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="lib_buffer_layer" value="library buffer"> library buffer</label>
+                    </div>
+                    <form id="template_buffer_form">
+                        <label id="label_radius">Community Centre buffer radius:</label>
+                        <input type="text" id="tmp_buffer_radius" value="35">
+                        <br>
+                        <label id="label_unit"> Community Centre buffer radius unit:</label>
+                        <select id="tmp_buffer_unit">
+                            <option selected="selected" value="meters">meters</option>
+                            <option value="kilometers">kilometers</option>
+                            <option value="miles">miles</option>
+                        </select>
+                        <br>
+                        <input type="checkbox" id="atm_in_tmp_buffer" value="ATM"> ATM
+                        <input type="checkbox" id="cafe_in_tmp_buffer" value="Cafe"> Cafe
+                        <input type="checkbox" id="foodBeverage_in_tmp_buffer" value="FB"> Food & Beverage
+                        <input type="checkbox" id="parking_in_tmp_buffer" value="Parking"> Parking
+                        <input type="checkbox" id="taxi_in_tmp_buffer" value="Taxi"> Taxi
+                        <button type="button" id="tmp_buffer_button">Points in Buffer</button>
+                    </form>
                     <form id="nature_buffer_form">
                         Nature Park buffer radius:
                         <input type="text" id="nature_buffer_radius" value="35">
@@ -138,10 +159,9 @@
             <div class="col-md-6">
                 <div id="analysis_results">
                 </div>
-              <!--   <div id="chartContainer" style="height: 300px; width: 50%;"></div> -->
-              <div id="chartContainer" class="row">
-        
-              </div>
+                <!--   <div id="chartContainer" style="height: 300px; width: 50%;"></div> -->
+                <div id="chartContainer" class="row">
+                </div>
             </div>
         </div>
     </div>
@@ -151,6 +171,7 @@
         $("#lib_buffer_form").hide();
         $("#cc_buffer_form").hide();
         $("#nature_buffer_form").hide();
+        $('#template_buffer_form').hide();
     });
     </script>
     <script type="text/javascript" src="js/addClusteringStyle.js"></script>
@@ -161,6 +182,7 @@
     <script type="text/javascript" src="js/create_cc_buffer.js"></script>
     <script type="text/javascript" src="js/create_nature_buffer.js"></script>
     <script type="text/javascript" src="js/showPointsInBufferZone.js"></script>
+    <script type="text/javascript" src="js/attachEvntListenToDynamicBUfferForm.js"></script>
     <script type="text/javascript" src="js/uploadFile.js"></script>
     <script type="text/javascript" src="js/countPointDistanceinBufferZone.js"></script>
 </body>
