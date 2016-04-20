@@ -1,11 +1,11 @@
 //countPointDistanceinBufferZone.js
 
 function countPointDistanceinBufferZone(point_json_file_dir, buffer_for, sub_feature) {
-
+/*
 
     console.log(point_json_file_dir);
     console.log(buffer_for);
-    console.log(sub_feature);
+    console.log(sub_feature);*/
 
 
 
@@ -57,7 +57,7 @@ function countPointDistanceinBufferZone(point_json_file_dir, buffer_for, sub_fea
 
                 // get centroid 
 
-                console.log("hello");
+                // console.log("hello");
                 // calculate the distance btw those filtered points and current buffer centroid 
                 $.each(pts_within_arr, function(ind, chart_obj) {
                     var centr = chart_obj.centroid;
