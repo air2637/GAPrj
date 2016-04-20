@@ -1,7 +1,7 @@
 //scalculateointsInBufferZone.js
 var _cc_buffer_for = [], 
     _point_json_file_dir = [];
-var _cc_buffer_for = [], _cc_buffer_for;
+var _cc_buffer_for = [], _cc_buffer_for, _usr_buffer_for;
 
 function getPointJsonFileDir(pointLayer) {
     //below example shows find atm points in a lib buffer zone
@@ -183,6 +183,13 @@ $("#lib_buffer_button").click(function() {
         _cc_buffer_for.push("taxi");
     }
 
+    $.each(user_buffer_faci_data_layers,function(i,v){
+        var tmp_id = '#' + v;
+        if($(tmp_id).prop('checked')){
+            _usr_buffer_for.push(v.split('_')[0]);
+        }
+    });
+
     var geojson = new ol.format.GeoJSON();
     var polygon_obj = geojson.writeFeaturesObject(lib_buffer_layer.getSource().getFeatures());
     var tmp = 0;
@@ -222,6 +229,10 @@ $("#lib_buffer_button").click(function() {
         });
 
     });
+
+    $.each(_usr_buffer_for,function(ind,val){
+        
+    })
 
 });
 

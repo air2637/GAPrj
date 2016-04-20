@@ -4,7 +4,7 @@ var current_layer_name;
 var markers = ['m1.svg', 'm2.svg', 'm3.svg', 'm4.svg', 'm5.svg', 'm6.svg', 'm7.svg', 'm8.svg', 'm9.svg',
     'm10.svg', 'm11.svg', 'm12.svg'
 ];
-
+var user_buffer_faci_data_layers = [];
 var user_buffer_table;
 
 
@@ -163,6 +163,9 @@ $('#faci_file').on('change', function() {
     //add new item to html page
     var _parent_div = $(this).parent();
     _parent_div.children('.faci_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_faci_data_layer"> ' + window.current_layer_name + '</label>');
+    $('.faci_buffer_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_buffer_faci_data_layer"> ' + window.current_layer_name + '</label>');
+    user_buffer_faci_data_layers.push( window.current_layer_name + '_user_buffer_faci_data_layer');
+
 
     // upload layer content and instantiate the layer
     uploadFile();
