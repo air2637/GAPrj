@@ -66,7 +66,11 @@ function add_buffer_to_lib(radius, unit) {
 // show menu if buffer selection box is checked
 $("#lib_buffer_layer").change(function() {
     if ($("#lib_buffer_layer").prop('checked') == true) {
+        radius = 35;
+        unit = 'meters';
         lib_buffer_layer = add_buffer_to_lib(radius, unit);
+        $('#lib_buffer_radius').val(35);
+        $('#lib_buffer_unit').val('meters');
         $("#lib_buffer_form").slideDown();
     } else {
         map.removeLayer(lib_buffer_layer);

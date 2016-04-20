@@ -74,7 +74,7 @@ function attachEvntListenToDynamicBUfferForm(another_selector) {
 
     // update buffer radius
     $('#tmp_buffer_radius').on('input propertychange paste', function() {
-        console.log('triggered');
+        
         radius = $('#tmp_buffer_radius').val();
         if ($.isNumeric(radius) && radius > 0) {
             map.removeLayer(window.user_buffer_layer);

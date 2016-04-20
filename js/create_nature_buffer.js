@@ -68,6 +68,10 @@ function add_buffer_to_nature(radius, unit) {
 // show menu if buffer selection box is checked
 $("#nature_buffer_layer").change(function() {
     if ($("#nature_buffer_layer").prop('checked') == true) {
+        radius = 35;
+        unit = 'meters';
+        $('#nature_buffer_radius').val(35);
+        $('#nature_buffer_unit').val('meters');
         $("#nature_buffer_form").slideDown();
         nature_buffer_layer = add_buffer_to_nature(radius, unit);
         

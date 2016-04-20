@@ -66,7 +66,11 @@ function add_buffer_to_cc(radius, unit) {
 // show menu if buffer selection box is checked
 $("#cc_buffer_layer").change(function() {
     if ($("#cc_buffer_layer").prop('checked') == true) {
+        radius = 35;
+        unit = 'meters';
         cc_buffer_layer = add_buffer_to_cc(radius, unit);
+        $('#cc_buffer_radius').val(35);
+        $('#cc_buffer_unit').val('meters');
         $("#cc_buffer_form").slideDown();
     } else {
         map.removeLayer(cc_buffer_layer);

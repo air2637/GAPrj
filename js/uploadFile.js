@@ -103,6 +103,11 @@ $('#pub_file').on('change', function() {
 
     $(_another_selector).change(function() {
         if ($(_another_selector).prop('checked') == true) {
+            radius = 35;
+            unit = 'meters';
+            $('#tmp_buffer_radius').val(35);
+            $('#tmp_buffer_unit').val('meters');
+
             // create dynamic form
             window.user_buffer_table = $('#template_buffer_form').clone();
 
@@ -124,15 +129,15 @@ $('#pub_file').on('change', function() {
                 }
             });
             // update buffer unit
-            window.user_buffer_table.find('#tmp_buffer_unit').on('change',function() {
+            window.user_buffer_table.find('#tmp_buffer_unit').on('change', function() {
                 map.removeLayer(window.cc_buffer_layer);
                 unit = $(this).val();
                 window.user_buffer_layer = add_user_data_buffer(radius, unit, _another_selector);
             });
 
             // show buffer table
-            window.user_buffer_table.find('#tmp_buffer_button').on('click',function() {
-               createUserDataBufferTable(_another_selector);
+            window.user_buffer_table.find('#tmp_buffer_button').on('click', function() {
+                createUserDataBufferTable(_another_selector);
             });
 
 
