@@ -84,7 +84,8 @@
                         <label class="checkbox-inline">
                             <input type="checkbox" id="lib_buffer_layer" value="library buffer"> library buffer</label>
                     </div>
-                    <form id="template_buffer_form">
+                 
+                    <form id="template_buffer_form" class="buffer_form">
                         <label id="label_radius">Community Centre buffer radius:</label>
                         <input type="text" id="tmp_buffer_radius" value="35">
                         <br>
@@ -95,71 +96,16 @@
                             <option value="miles">miles</option>
                         </select>
                         <br>
+                        <div class="faci_buffer_check_items">
                         <input type="checkbox" id="atm_in_tmp_buffer" value="ATM"> ATM
                         <input type="checkbox" id="cafe_in_tmp_buffer" value="Cafe"> Cafe
                         <input type="checkbox" id="foodBeverage_in_tmp_buffer" value="FB"> Food & Beverage
                         <input type="checkbox" id="parking_in_tmp_buffer" value="Parking"> Parking
                         <input type="checkbox" id="taxi_in_tmp_buffer" value="Taxi"> Taxi
+                        </div>
                         <button type="button" id="tmp_buffer_button">Points in Buffer</button>
                     </form>
-                    <form id="nature_buffer_form">
-                        Nature Park buffer radius:
-                        <input type="text" id="nature_buffer_radius" value="35">
-                        <br> Nature Park buffer radius unit:
-                        <select id="nature_buffer_unit">
-                            <option selected="selected" value="meters">meters</option>
-                            <option value="kilometers">kilometers</option>
-                            <option value="miles">miles</option>
-                            <option value="degrees">degrees</option>
-                        </select>
-                        <br>
-                        <div class="faci_buffer_check_items">
-                        <input type="checkbox" id="atm_in_nature_buffer" value="ATM"> ATM
-                        <input type="checkbox" id="cafe_in_nature_buffer" value="Cafe"> Cafe
-                        <input type="checkbox" id="foodBeverage_in_nature_buffer" value="FB"> Food & Beverage
-                        <input type="checkbox" id="parking_in_nature_buffer" value="Parking"> Parking
-                        <input type="checkbox" id="taxi_in_nature_buffer" value="Taxi"> Taxi
-                        </div>
-                        <button type="button" id="nature_buffer_button">Points in Buffer</button>
-                    </form>
-                    <form id="cc_buffer_form">
-                        Community Centre buffer radius:
-                        <input type="text" id="cc_buffer_radius" value="35">
-                        <br> Community Centre buffer radius unit:
-                        <select id="cc_buffer_unit">
-                            <option selected="selected" value="meters">meters</option>
-                            <option value="kilometers">kilometers</option>
-                            <option value="miles">miles</option>
-                        </select>
-                        <br>
-                        <div class="faci_buffer_check_items">
-                        <input type="checkbox" id="atm_in_cc_buffer" value="ATM"> ATM
-                        <input type="checkbox" id="cafe_in_cc_buffer" value="Cafe"> Cafe
-                        <input type="checkbox" id="foodBeverage_in_cc_buffer" value="FB"> Food & Beverage
-                        <input type="checkbox" id="parking_in_cc_buffer" value="Parking"> Parking
-                        <input type="checkbox" id="taxi_in_cc_buffer" value="Taxi"> Taxi
-                        </div>
-                        <button type="button" id="cc_buffer_button">Points in Buffer</button>
-                    </form>
-                    <form id="lib_buffer_form">
-                        Library buffer radius:
-                        <input type="text" id="lib_buffer_radius" value="35">
-                        <br> Library buffer radius unit:
-                        <select id="lib_buffer_unit">
-                            <option selected="selected" value="meters">meters</option>
-                            <option value="kilometers">kilometers</option>
-                            <option value="miles">miles</option>
-                        </select>
-                        <br>
-                        <div class="faci_buffer_check_items">
-                        <input type="checkbox" id="atm_in_lib_buffer" value="ATM"> ATM
-                        <input type="checkbox" id="cafe_in_lib_buffer" value="Cafe"> Cafe
-                        <input type="checkbox" id="foodBeverage_in_lib_buffer" value="FB"> Food & Beverage
-                        <input type="checkbox" id="parking_in_lib_buffer" value="Parking"> Parking
-                        <input type="checkbox" id="taxi_in_lib_buffer" value="Taxi"> Taxi
-                        </div>
-                        <button type="button" id="lib_buffer_button">Points in Buffer</button>
-                    </form>
+                  
                 </div>
             </div>
             <div class="col-md-6">
@@ -174,10 +120,16 @@
     <script type="text/javascript">
     $(document).ready(function() {
         setMapType('OSM');
-        $("#lib_buffer_form").hide();
-        $("#cc_buffer_form").hide();
-        $("#nature_buffer_form").hide();
+
+        //$("#cc_buffer_form").hide();
         $('#template_buffer_form').hide();
+        /* $("#nature_buffer_form").hide();
+         
+         $("#lib_buffer_form").hide();*/
+
+         load_cc();
+         load_lib();
+         load_natural();
     });
     </script>
     <script type="text/javascript" src="js/addClusteringStyle.js"></script>

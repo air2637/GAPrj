@@ -114,6 +114,7 @@ $('#pub_file').on('change', function() {
             //modify the template buffer form, but in this case, no need, as I user assume to use one buffer form at a time only
             /*window.user_buffer_table.attr('id', window.current_layer_name+'_buffer_form');
             window.user_buffer_table.find('#tmp_buffer_radius').attr()*/
+            window.user_buffer_table.attr('id', 'current_form');
             window.user_buffer_table.find("#label_radius").text(window.current_layer_name + " buffer radius:");
             window.user_buffer_table.find("#label_unit").text(window.current_layer_name + " buffer unit:");
 
@@ -164,8 +165,6 @@ $('#faci_file').on('change', function() {
     var _parent_div = $(this).parent();
     _parent_div.children('.faci_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_faci_data_layer"> ' + window.current_layer_name + '</label>');
     $('.faci_buffer_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_buffer_faci_data_layer"> ' + window.current_layer_name + '</label>');
-    user_buffer_faci_data_layers.push( window.current_layer_name + '_user_buffer_faci_data_layer');
-
 
     // upload layer content and instantiate the layer
     uploadFile();
@@ -181,6 +180,26 @@ $('#faci_file').on('change', function() {
 
         } else {
             map.removeLayer(user_added_layers[$(this).prop('id').split('_')[0]]);
+        }
+    });
+
+    var _another_selector = "#" + window.current_layer_name + "_user_buffer_faci_data_layer";
+
+
+  
+
+
+    $('body').delegate( _another_selector, "click", function() {
+    //$('#current_form').find(_another_selector).live("click", function() {
+        if ($('#current_form').find(_another_selector).prop('checked') == true) {
+            alert("YES");
+            user_buffer_faci_data_layers.push(_another_selector.substring(1));
+
+        } else {
+            alert("no");
+            user_buffer_faci_data_layers = jQuery.grep(user_buffer_faci_data_layers, function(value) {
+                return value != _another_selector.substring(1);
+            });
         }
     });
 });

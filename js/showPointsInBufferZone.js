@@ -1,7 +1,8 @@
 //scalculateointsInBufferZone.js
-var _cc_buffer_for = [], 
+var _cc_buffer_for = [],
     _point_json_file_dir = [];
-var _cc_buffer_for = [], _cc_buffer_for, _usr_buffer_for;
+var _cc_buffer_for = [],
+    _cc_buffer_for, _usr_buffer_for;
 
 function getPointJsonFileDir(pointLayer) {
     //below example shows find atm points in a lib buffer zone
@@ -158,85 +159,9 @@ function moveToHere(coordinate) {
     window.map.setView(view);
 }
 
-$("#lib_buffer_button").click(function() {
-    window._cc_buffer_for = [],
-        _point_json_file_dir = [];
 
-    if ($("#cafe_in_lib_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("Cafe"));
-        _cc_buffer_for.push("cafe");
-    }
-    if ($("#atm_in_lib_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("ATM"));
-        _cc_buffer_for.push("atm");
-    }
-    if ($("#foodBeverage_in_lib_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("FB"));
-        _cc_buffer_for.push("food_beverage");
-    }
-    if ($("#parking_in_lib_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("Parking"));
-        _cc_buffer_for.push("parking");
-    }
-    if ($("#taxi_in_lib_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("Taxi"));
-        _cc_buffer_for.push("taxi");
-    }
 
-    $.each(user_buffer_faci_data_layers,function(i,v){
-        var tmp_id = '#' + v;
-        if($(tmp_id).prop('checked')){
-            _usr_buffer_for.push(v.split('_')[0]);
-        }
-    });
-
-    var geojson = new ol.format.GeoJSON();
-    var polygon_obj = geojson.writeFeaturesObject(lib_buffer_layer.getSource().getFeatures());
-    var tmp = 0;
-    var counted, point_obj;
-    var _cc_buffer_for_sub;
-    //while reading cafe point data and do the count computation with polygon
-    $.each(_point_json_file_dir, function(index, value) {
-        $.getJSON(value, function(data) {
-
-            point_obj = data;
-
-            //the following code to check what json file currently is loaded
-            $.each(_cc_buffer_for, function(sub_index, sub_value) {
-                if (value.indexOf(sub_value) > -1) {
-                    _cc_buffer_for_sub = sub_value;
-                    return false;
-                }
-            })
-
-            //counted is the polygon object with pt_count attribute attached
-            counted = turf.count(polygon_obj, point_obj, 'num_of_' + _cc_buffer_for_sub);
-            //note that aft running turf.count, polygon_object will has 'pt_count' property
-
-            /*var resultFeatures = point_obj.features.concat(counted.features);
-            var result = {
-                "type": "FeatureCollection",
-                "features": resultFeatures
-            };*/
-            // console.log(JSON.stringify(result));
-            //table_col.push(counted);
-            tmp++;
-
-            if (tmp == _cc_buffer_for.length) {
-                displayBufferTable(lib_buffer_layer, counted);
-            }
-
-        });
-
-    });
-
-    $.each(_usr_buffer_for,function(ind,val){
-        
-    })
-
-});
-
-$("#cc_buffer_button").click(function() {
+function createUserDataBufferTable(another_selector) {
 
     window._cc_buffer_for = [],
         window._point_json_file_dir = [];
@@ -266,12 +191,25 @@ $("#cc_buffer_button").click(function() {
     // countPointDistanceinBufferZone(window._point_json_file_dir, window._cc_buffer_for);
 
     var geojson = new ol.format.GeoJSON();
-    var polygon_obj = geojson.writeFeaturesObject(cc_buffer_layer.getSource().getFeatures());
+    var polygon_obj = geojson.writeFeaturesObject(window.user_buffer_layer.getSource().getFeatures());
 
     var tmp = 0;
     var counted, point_obj, pts_within, centroid_point;
     var pts_within_pair_collection = [];
     var _cc_buffer_for_sub;
+
+
+    //the following block is executed first because reading JSON file is async
+    $.each(window.user_buffer_faci_data_layers, function(index, value) {
+        var file_name = value.split('_')[0];
+        var user_added_vector_layer = user_added_layers[file_name];
+        var point_obj = geojson.writeFeaturesObject(user_added_vector_layer.getSource().getFeatures());
+        counted = turf.count(polygon_obj, point_obj, 'num_of_' + file_name);
+
+    });
+    console.log("out first loop");
+
+
     //while reading cafe point data and do the count computation with polygon
     $.each(window._point_json_file_dir, function(index, value) {
         $.getJSON(value, function(data) {
@@ -285,18 +223,11 @@ $("#cc_buffer_button").click(function() {
                     return false;
                 }
             })
-
+            console.log("counted going to have value" + tmp);
             //counted is the polygon object with pt_count attribute attached
             counted = turf.count(polygon_obj, point_obj, 'num_of_' + _cc_buffer_for_sub);
             //note that aft running turf.count, polygon_object will has 'pt_count' property
 
-            /*var resultFeatures = point_obj.features.concat(counted.features);
-            var result = {
-                "type": "FeatureCollection",
-                "features": resultFeatures
-            };*/
-            //console.log(JSON.stringify(result));
-            //table_col.push(counted);
             tmp++;
 
             if (tmp == window._cc_buffer_for.length) {
@@ -307,77 +238,16 @@ $("#cc_buffer_button").click(function() {
 
     });
 
-});
+    console.log("out 2nd loop");
 
-$("#nature_buffer_button").click(function() {
-    window._cc_buffer_for = [],
-        _point_json_file_dir = [];
-
-    if ($("#cafe_in_nature_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("Cafe"));
-        _cc_buffer_for.push("cafe");
-    }
-    if ($("#atm_in_nature_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("ATM"));
-        _cc_buffer_for.push("atm");
-    }
-    if ($("#foodBeverage_in_nature_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("FB"));
-        _cc_buffer_for.push("food_beverage");
-    }
-    if ($("#parking_in_nature_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("Parking"));
-        _cc_buffer_for.push("parking");
-    }
-    if ($("#taxi_in_nature_buffer").prop('checked')) {
-        _point_json_file_dir.push(getPointJsonFileDir("Taxi"));
-        _cc_buffer_for.push("taxi");
+    if(window._point_json_file_dir.length==0){
+        displayBufferTable(cc_buffer_layer, counted);
     }
 
-    var geojson = new ol.format.GeoJSON();
-    var polygon_obj = geojson.writeFeaturesObject(nature_buffer_layer.getSource().getFeatures());
-    var tmp = 0;
-    var counted, point_obj;
-    var _cc_buffer_for_sub;
-    //while reading cafe point data and do the count computation with polygon
-    $.each(_point_json_file_dir, function(index, value) {
-        $.getJSON(value, function(data) {
-
-            point_obj = data;
-
-            //the following code to check what json file currently is loaded
-            $.each(_cc_buffer_for, function(sub_index, sub_value) {
-                if (value.indexOf(sub_value) > -1) {
-                    _cc_buffer_for_sub = sub_value;
-                    return false;
-                }
-            })
-
-            //counted is the polygon object with pt_count attribute attached
-            counted = turf.count(polygon_obj, point_obj, 'num_of_' + _cc_buffer_for_sub);
-            //note that aft running turf.count, polygon_object will has 'pt_count' property
-
-            /*var resultFeatures = point_obj.features.concat(counted.features);
-            var result = {
-                "type": "FeatureCollection",
-                "features": resultFeatures
-            };*/
-            //console.log(JSON.stringify(result));
-            //table_col.push(counted);
-            tmp++;
-
-            if (tmp == _cc_buffer_for.length) {
-                displayBufferTable(nature_buffer_layer, counted);
-            }
-
-        });
-
-    });
-
-});
+};
 
 
-function createUserDataBufferTable(another_selector) {
+/*function createUserDataBufferTable(another_selector) {
     window._cc_buffer_for = [],
         window._point_json_file_dir = [];
 
@@ -431,11 +301,7 @@ function createUserDataBufferTable(another_selector) {
             counted = turf.count(polygon_obj, point_obj, 'num_of_' + _cc_buffer_for_sub);
             //note that aft running turf.count, polygon_object will has 'pt_count' property
 
-            /*var resultFeatures = point_obj.features.concat(counted.features);
-            var result = {
-                "type": "FeatureCollection",
-                "features": resultFeatures
-            };*/
+           
             //console.log(JSON.stringify(result));
             //table_col.push(counted);
             tmp++;
@@ -447,4 +313,4 @@ function createUserDataBufferTable(another_selector) {
         });
 
     });
-}
+}*/
