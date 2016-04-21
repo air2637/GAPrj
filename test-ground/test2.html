@@ -20,7 +20,7 @@
 
 <body>
     <div>
-        <table class="myTable">
+        <!--    <table class="myTable">
             <thead>
                 <tr>
                     <th>Item</th>
@@ -45,13 +45,54 @@
                     <td>Fruit</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+        <div class="test">
+            <button id="checkIt">check it</button>
+        </div>
         <script type="text/javascript">
+        function runMe(selector) {
+            if ($(selector).attr("checked")) {
+                alert("checked");
+            } else {
+                alert("not checked");
+            }
+        }
+
         $(document).ready(function() {
-            $('.myTable').DataTable();
+            // $('.myTable').DataTable();
+
+
+            var id = 'test-checkbox';
+            /* 
+            var label = $("<label>hello</label>").addClass("checkbox-inline");
+            var checkbox = $("<input>").attr({type:"checkbox", id:id});
+
+            $('.test').append(checkbox.after(label));
+         
+            var selector = "#" + id ;
+
+            $('#checkIt').click(function() {
+                runMe(selector);
+            });
+*/
+
+            var $ctrl = $(document.createElement("input")).attr({
+                id: id,
+                name: 'test',
+                value: 'test',
+                text: 'my testing',
+                type: 'checkbox',
+                checked: true
+            });
+
+            var lbl = '<label>Hello world</label>';
+
+
+            $(".test").append($ctrl.after(lbl));
+
         });
         </script>
-        <table data-sortable class="sortable-theme-bootstrap">
+        <!--  <table data-sortable class="sortable-theme-bootstrap">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -68,7 +109,7 @@
                     <td>65577854</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </body>
 

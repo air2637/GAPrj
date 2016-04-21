@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="/js/jquery-2.1.1.min.js"></script>
+    <title>Hello There</title>
+</head>
+
+<body>
+    <div class="test">
+    </div>
+    <script type="text/javascript">
+  var $ctrl = $('<label />').html('Hello world')
+                          .prepend($('<input/>').attr({ type: 'checkbox', id: 'someID'}));
+
+
+    $(".test").append($ctrl);
+    </script>
+</body>
+
+</html>
