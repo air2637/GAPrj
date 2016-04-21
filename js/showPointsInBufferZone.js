@@ -166,23 +166,23 @@ function createUserDataBufferTable(another_selector) {
     window._cc_buffer_for = [],
         window._point_json_file_dir = [];
 
-    if ($("#cafe_in_cc_buffer").prop('checked')) {
+    if ($('#current_form').find("#cafe_in_tmp_buffer").prop('checked')) {
         window._point_json_file_dir.push(getPointJsonFileDir("Cafe"));
         window._cc_buffer_for.push("cafe");
     }
-    if ($("#atm_in_cc_buffer").prop('checked')) {
+    if ($('#current_form').find("#atm_in_tmp_buffer").prop('checked')) {
         window._point_json_file_dir.push(getPointJsonFileDir("ATM"));
         window._cc_buffer_for.push("atm");
     }
-    if ($("#foodBeverage_in_cc_buffer").prop('checked')) {
+    if ($('#current_form').find("#foodBeverage_in_tmp_buffer").prop('checked')) {
         window._point_json_file_dir.push(getPointJsonFileDir("FB"));
         window._cc_buffer_for.push("food_beverage");
     }
-    if ($("#parking_in_cc_buffer").prop('checked')) {
+    if ($('#current_form').find("#parking_in_tmp_buffer").prop('checked')) {
         window._point_json_file_dir.push(getPointJsonFileDir("Parking"));
         window._cc_buffer_for.push("parking");
     }
-    if ($("#taxi_in_cc_buffer").prop('checked')) {
+    if ($('#current_form').find("#taxi_in_tmp_buffer").prop('checked')) {
         window._point_json_file_dir.push(getPointJsonFileDir("Taxi"));
         window._cc_buffer_for.push("taxi");
     }
@@ -231,7 +231,7 @@ function createUserDataBufferTable(another_selector) {
             tmp++;
 
             if (tmp == window._cc_buffer_for.length) {
-                displayBufferTable(cc_buffer_layer, counted);
+                displayBufferTable(window.user_buffer_layer, counted);
             }
 
         });
@@ -241,7 +241,7 @@ function createUserDataBufferTable(another_selector) {
     console.log("out 2nd loop");
 
     if(window._point_json_file_dir.length==0){
-        displayBufferTable(cc_buffer_layer, counted);
+        displayBufferTable(window.user_buffer_layer, counted);
     }
 
 };
