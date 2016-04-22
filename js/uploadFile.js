@@ -32,7 +32,7 @@ function processObj(obj) {
     var _data_layer;
 
     if (markers.length > 0 && obj.features[0].geometry.type == "Point") {
-        source_file = markers[Math.floor(Math.random() * 12) + 1]; // randome a num
+        source_file = markers[Math.floor(Math.random() * 6) + 1]; // randome a num
 
         var layerStyle = new ol.style.Style({
             image: new ol.style.Icon(({
