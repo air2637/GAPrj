@@ -64,14 +64,9 @@ function add_buffer_to_lib(radius, unit) {
     });
 }
 // show menu if buffer selection box is checked
-$("#lib_buffer_layer").change(function() {
+/*$("#lib_buffer_layer").change(function() {
     if ($("#lib_buffer_layer").prop('checked') == true) {
-        /*radius = 35;
-        unit = 'meters';
-        lib_buffer_layer = add_buffer_to_lib(radius, unit);
-        $('#lib_buffer_radius').val(35);
-        $('#lib_buffer_unit').val('meters');
-        $("#lib_buffer_form").slideDown();*/
+        
 
         var name = "Library";
 
@@ -87,8 +82,7 @@ $("#lib_buffer_layer").change(function() {
         window.user_buffer_table.attr('id', 'current_form');
         
         //modify the template buffer form, but in this case, no need, as I user assume to use one buffer form at a time only
-        /*window.user_buffer_table.attr('id', window.current_layer_name+'_buffer_form');
-        window.user_buffer_table.find('#tmp_buffer_radius').attr()*/
+       
         window.user_buffer_table.find("#label_radius").text(name + " buffer radius:");
         window.user_buffer_table.find("#label_unit").text(name + " buffer unit:");
 
@@ -121,12 +115,11 @@ $("#lib_buffer_layer").change(function() {
 
 
     } else {
-        /* map.removeLayer(lib_buffer_layer);
-         $("#lib_buffer_form").hide();*/
+        
         window.user_buffer_table.remove();
         map.removeLayer(window.user_buffer_layer);
     }
-});
+});*/
 /*
 // update lib buffer radius
 $('#lib_buffer_radius').on('input propertychange paste', function() {

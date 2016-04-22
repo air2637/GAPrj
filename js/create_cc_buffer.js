@@ -64,14 +64,9 @@ function add_buffer_to_cc(radius, unit) {
     });
 }
 // show menu if buffer selection box is checked
-$("#cc_buffer_layer").change(function() {
+/*$("#cc_buffer_layer").change(function() {
     if ($("#cc_buffer_layer").prop('checked') == true) {
-        /*radius = 35;
-        unit = 'meters';
-         cc_buffer_layer = add_buffer_to_cc(radius, unit);
-         $('#cc_buffer_radius').val(35);
-         $('#cc_buffer_unit').val('meters');
-         $("#cc_buffer_form").slideDown();*/
+       
 
         var name = "Community Clubs";
 
@@ -86,8 +81,7 @@ $("#cc_buffer_layer").change(function() {
         window.user_buffer_table = $('#template_buffer_form').clone();
 
         //modify the template buffer form, but in this case, no need, as I user assume to use one buffer form at a time only
-        /*window.user_buffer_table.attr('id', window.current_layer_name+'_buffer_form');
-        window.user_buffer_table.find('#tmp_buffer_radius').attr()*/
+        
         window.user_buffer_table.attr('id', 'current_form');
         window.user_buffer_table.find("#label_radius").text(name + " buffer radius:");
         window.user_buffer_table.find("#label_unit").text(name + " buffer unit:");
@@ -121,12 +115,11 @@ $("#cc_buffer_layer").change(function() {
 
 
     } else {
-        /*   map.removeLayer(cc_buffer_layer);
-           $("#cc_buffer_form").hide();*/
+        
         window.user_buffer_table.remove();
         map.removeLayer(window.user_buffer_layer);
     }
-});
+});*/
 
 /*// update cc buffer radius
 $('#cc_buffer_radius').on('input propertychange paste', function() {

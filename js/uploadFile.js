@@ -76,7 +76,7 @@ $('#pub_file').on('change', function() {
     var _parent_div = $(this).parent();
     _parent_div.children('.pub_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_pub_data_layer"> ' + window.current_layer_name + '</label>');
 
-    $('.buffer_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_buffer_layer"> ' + window.current_layer_name + '</label>');
+    $('.buffer_check_items').append('<label class="checkbox-inline"><input type="checkbox" id="' + window.current_layer_name + '_user_buffer_layer" class="radio-liked-chk"> ' + window.current_layer_name + '</label>');
 
     // upload layer content and instantiate the layer
     uploadFile();
