@@ -207,7 +207,6 @@ function createUserDataBufferTable(another_selector) {
         counted = turf.count(polygon_obj, point_obj, 'num_of_' + file_name);
 
     });
-    console.log("out first loop");
 
 
     //while reading cafe point data and do the count computation with polygon
@@ -223,7 +222,7 @@ function createUserDataBufferTable(another_selector) {
                     return false;
                 }
             })
-            console.log("counted going to have value" + tmp);
+            // console.log("counted going to have value" + tmp);
             //counted is the polygon object with pt_count attribute attached
             counted = turf.count(polygon_obj, point_obj, 'num_of_' + _cc_buffer_for_sub);
             //note that aft running turf.count, polygon_object will has 'pt_count' property
@@ -238,7 +237,6 @@ function createUserDataBufferTable(another_selector) {
 
     });
 
-    console.log("out 2nd loop");
 
     if(window._point_json_file_dir.length==0){
         displayBufferTable(window.user_buffer_layer, counted);

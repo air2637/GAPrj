@@ -1,9 +1,7 @@
 // uploadFile.js
 var user_added_layers = {};
 var current_layer_name;
-var markers = ['m1.svg', 'm2.svg', 'm3.svg', 'm4.svg', 'm5.svg', 'm6.svg', 'm7.svg', 'm8.svg', 'm9.svg',
-    'm10.svg', 'm11.svg', 'm12.svg'
-];
+var markers = ['m1.svg', 'm2.svg', 'm3.svg', 'm4.svg', 'm5.svg', 'm6.svg'];
 var user_buffer_faci_data_layers = [];
 var user_buffer_table;
 
@@ -192,11 +190,10 @@ $('#faci_file').on('change', function() {
     $('body').delegate( _another_selector, "click", function() {
     //$('#current_form').find(_another_selector).live("click", function() {
         if ($('#current_form').find(_another_selector).prop('checked') == true) {
-            alert("YES");
+            
             user_buffer_faci_data_layers.push(_another_selector.substring(1));
 
         } else {
-            alert("no");
             user_buffer_faci_data_layers = jQuery.grep(user_buffer_faci_data_layers, function(value) {
                 return value != _another_selector.substring(1);
             });
