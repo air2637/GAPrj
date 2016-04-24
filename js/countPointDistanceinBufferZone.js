@@ -61,7 +61,7 @@ function countPointDistanceinBufferZone(point_json_file_dir, buffer_for, sub_fea
                 // calculate the distance btw those filtered points and current buffer centroid 
                 $.each(pts_within_arr, function(ind, chart_obj) {
                     var centr = chart_obj.centroid;
-                    var units = "miles";
+                    var units = "kilometers";
                     var distances = [];
                     var chart_title = "Distances of " + chart_obj.point_type + " within the Range";
 
@@ -88,10 +88,18 @@ function countPointDistanceinBufferZone(point_json_file_dir, buffer_for, sub_fea
                         title: {
                             text: chart_title
                         },
+                        axisX:{
+                             title: "Places",
+                             titleFontSize: 14
+                        },
+                        axisY:{
+                              title: "Distance (km)",
+                             titleFontSize: 14
+                        },
                         animationEnabled: false, // change to true
                         data: [{
                             // Change type to "bar", "area", "spline", "pie",etc.
-                            type: "column",
+                            type: "scatter",
                             dataPoints: dataPoints
                         }]
                     });
